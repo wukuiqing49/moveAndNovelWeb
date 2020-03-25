@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wu.smybatis.mapper.UserMapper">
+
+    <!--    查询全部数据-->
+    <select id="findAll" resultType="User" useCache="true">
+        select *from Mybatis.User
+    </select>
+
+    <!--    插入数据-->
+    <insert id="addUser" parameterType="User">
+       insert into Mybatis.User(name,pwd,id) values (#{name},#{pwd},#{id})
+    </insert>
+    <!--    插入数据-->
+    <insert id="updateUser" parameterType="map">
+   update Mybatis.User set name=#{name} ,pwd=#{pwd} where id=#{id}
+    </insert>
+    <!--    删除-->
+    <delete id="deleteUser" parameterType="map">
+        delete from Mybatis.User where id=#{id}
+    </delete>
+    <!--    分页查询   start  开始的数据  pageSize 每页展示的数据数   -->
+    <select id="findAllPages" parameterType="map" resultType="User">
+
+     select * from Mybatis.User limit #{start} , #{pageSize}
+    </select>
+
+</mapper>
